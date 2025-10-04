@@ -1,0 +1,160 @@
+CREATE DATABASE escolamusica;
+USE escolamusica;
+
+CREATE TABLE orquestras (
+    id_orquestra INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50),
+    cidade VARCHAR(50),
+    pais VARCHAR(100),
+    data_criacao DATE
+);
+
+CREATE TABLE funcoes (
+    id_funcao INT AUTO_INCREMENT PRIMARY KEY,
+    nome_funcao VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE musicos(
+    id_musico INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(40) NOT NULL,
+    nacionalidade VARCHAR(50),
+    data_nascimento DATE,
+    telefone VARCHAR(30),
+    email VARCHAR(100),
+    id_orquestra INT,
+    id_funcao INT,
+    FOREIGN KEY (id_orquestra) REFERENCES orquestras(id_orquestra),
+    FOREIGN KEY (id_funcao) REFERENCES funcoes(id_funcao)
+);
+
+CREATE TABLE sinfonias (
+    id_sinfonia INT AUTO_INCREMENT PRIMARY KEY,
+    compositor VARCHAR(50),
+    data_criacao DATE,
+    titulo VARCHAR(100),
+    duracao_min INT
+);
+
+CREATE TABLE instrumentos (
+    id_instrumento INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(150) NOT NULL,
+    tipo VARCHAR(100),
+    estado VARCHAR(40)
+);
+
+INSERT INTO orquestras (nome, cidade, pais, data_criacao)
+VALUES
+('Orquestra Sinfônica do Recife', 'Recife', 'Brasil', '1995-03-10'),
+('Orquestra Filarmônica de São Paulo', 'São Paulo', 'Brasil', '1980-05-21'),
+('Orquestra Jovem do Rio', 'Rio de Janeiro', 'Brasil', '2005-07-15'),
+('Orquestra de Câmara de Brasília', 'Brasília', 'Brasil', '1990-11-05'),
+('Orquestra Sinfônica de Minas', 'Belo Horizonte', 'Brasil', '1985-09-12'),
+('Orquestra de Porto Alegre', 'Porto Alegre', 'Brasil', '1988-06-20'),
+('Orquestra de Fortaleza', 'Fortaleza', 'Brasil', '1992-08-14'),
+('Orquestra de Curitiba', 'Curitiba', 'Brasil', '1996-02-28'),
+('Orquestra de Salvador', 'Salvador', 'Brasil', '1983-09-09'),
+('Orquestra de Manaus', 'Manaus', 'Brasil', '1991-12-12'),
+('Orquestra de Belém', 'Belém', 'Brasil', '1987-03-07'),
+('Orquestra de Campinas', 'Campinas', 'Brasil', '1994-04-04'),
+('Orquestra de Goiânia', 'Goiânia', 'Brasil', '1993-07-11'),
+('Orquestra de Vitória', 'Vitória', 'Brasil', '1989-10-01'),
+('Orquestra de Natal', 'Natal', 'Brasil', '1997-05-05'),
+('Orquestra de João Pessoa', 'João Pessoa', 'Brasil', '2000-01-15'),
+('Orquestra de Florianópolis', 'Florianópolis', 'Brasil', '1998-09-21'),
+('Orquestra de Santos', 'Santos', 'Brasil', '1986-08-18'),
+('Orquestra de São Luís', 'São Luís', 'Brasil', '1984-11-29'),
+('Orquestra de Teresina', 'Teresina', 'Brasil', '1999-03-03');
+
+
+INSERT INTO funcoes (nome_funcao)
+VALUES
+('Maestro'),
+('Violinista'),
+('Flautista'),
+('Pianista'),
+('Cellista'),
+('Trompetista'),
+('Contrabaixista'),
+('Percussionista'),
+('Harpaista'),
+('Clarinetista'),
+('Oboista'),
+('Saxofonista'),
+('Trombonista'),
+('Timpanista'),
+('Guitarrista'),
+('Violeiro'),
+('Fagotista'),
+('Sopranista'),
+('Altoista'),
+('Tenorista');
+
+
+INSERT INTO instrumentos (nome, tipo, estado)
+VALUES
+('Violino', 'Cordas', 'Disponível'),
+('Flauta', 'Sopro', 'Disponível'),
+('Piano', 'Cordas', 'Em manutenção'),
+('Trompete', 'Sopro', 'Disponível'),
+('Contrabaixo', 'Cordas', 'Disponível'),
+('Bateria', 'Percussão', 'Disponível'),
+('Harpa', 'Cordas', 'Disponível'),
+('Clarinete', 'Sopro', 'Disponível'),
+('Oboé', 'Sopro', 'Disponível'),
+('Saxofone', 'Sopro', 'Disponível'),
+('Trombone', 'Sopro', 'Disponível'),
+('Tímpano', 'Percussão', 'Disponível'),
+('Guitarra', 'Cordas', 'Disponível'),
+('Viola', 'Cordas', 'Disponível'),
+('Fagote', 'Sopro', 'Disponível'),
+('Violoncelo', 'Cordas', 'Disponível'),
+('Trompa', 'Sopro', 'Disponível'),
+('Marimba', 'Percussão', 'Disponível'),
+('Pandeiro', 'Percussão', 'Disponível'),
+('Clavicórdio', 'Cordas', 'Disponível');
+
+
+INSERT INTO sinfonias (titulo, compositor, data_criacao, duracao_min)
+VALUES
+('Sinfonia nº1', 'Mozart', '1770-01-01', 30),
+('Sinfonia nº2', 'Haydn', '1775-02-10', 32),
+('Sinfonia nº3', 'Beethoven', '1804-03-15', 40),
+('Sinfonia nº4', 'Schubert', '1816-05-20', 28),
+('Sinfonia nº6', 'Brahms', '1875-06-25', 45),
+('Sinfonia nº7', 'Mahler', '1900-08-30', 55),
+('Sinfonia nº8', 'Dvorak', '1888-09-12', 50),
+('Sinfonia nº9', 'Shostakovich', '1930-11-10', 60),
+('Sinfonia nº10', 'Tchaikovsky', '1893-12-15', 48),
+('Sinfonia nº11', 'Mendelssohn', '1840-04-01', 38),
+('Sinfonia nº12', 'Ravel', '1928-07-07', 35),
+('Sinfonia nº13', 'Bartók', '1931-01-23', 42),
+('Sinfonia nº14', 'Prokofiev', '1935-05-11', 50),
+('Sinfonia nº15', 'Berlioz', '1830-03-14', 52),
+('Sinfonia nº16', 'Sibelius', '1910-06-16', 47),
+('Sinfonia nº17', 'Vaughan Williams', '1922-08-19', 49),
+('Sinfonia nº18', 'Copland', '1940-09-09', 46),
+('Sinfonia nº19', 'Stravinsky', '1913-11-21', 44),
+('Sinfonia nº20', 'Saint-Saëns', '1886-02-18', 41);
+
+
+INSERT INTO musicos (nome, nacionalidade, data_nascimento, telefone, email, id_orquestra, id_funcao)
+VALUES
+('Lucas Pereira', 'Brasil', '1987-05-15', '81977777777', 'lucas@email.com', 4, 5),
+('Fernanda Costa', 'Brasil', '1992-09-23', '81966666666', 'fernanda@email.com', 5, 6),
+('Thiago Rocha', 'Brasil', '1989-03-30', '81955555555', 'thiago@email.com', 6, 7),
+('Patricia Lima', 'Brasil', '1991-07-12', '81944444444', 'patricia@email.com', 7, 8),
+('Eduardo Souza', 'Brasil', '1986-10-10', '81933333333', 'eduardo@email.com', 8, 2),
+('Camila Martins', 'Brasil', '1990-01-05', '81922222222', 'camila@email.com', 9, 3),
+('Felipe Gomes', 'Brasil', '1985-11-20', '81911111111', 'felipe@email.com', 10, 4),
+('Juliana Alves', 'Brasil', '1993-02-14', '81900000000', 'juliana@email.com', 11, 1),
+('Ricardo Silva', 'Brasil', '1988-04-25', '81999988877', 'ricardo@email.com', 12, 2),
+('Sofia Andrade', 'Brasil', '1994-06-30', '81977766655', 'sofia@email.com', 13, 5),
+('Gabriel Lima', 'Brasil', '1982-12-11', '81955544433', 'gabriel@email.com', 14, 6),
+('Marina Costa', 'Brasil', '1996-09-19', '81933322211', 'marina@email.com', 15, 7),
+('Bruno Rocha', 'Brasil', '1983-03-02', '81911100099', 'bruno@email.com', 16, 8),
+('Larissa Alves', 'Brasil', '1995-07-21', '81922233344', 'larissa@email.com', 17, 3),
+('Vitor Santos', 'Brasil', '1989-10-07', '81944455566', 'vitor@email.com', 18, 4),
+('Daniela Pereira', 'Brasil', '1991-01-30', '81966677788', 'daniela@email.com', 19, 1),
+('Fernando Costa', 'Brasil', '1987-08-16', '81988899900', 'fernando@email.com', 20, 2),
+('Isabela Gomes', 'Brasil', '1992-12-12', '81900011122', 'isabela@email.com', 1, 5),
+('Rafael Santos', 'Brasil', '1985-05-28', '81922244466', 'rafael2@email.com', 2, 6);
