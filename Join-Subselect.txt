@@ -1,0 +1,111 @@
+USE escolamusica;
+
+-- 1️ Listar todos os músicos com suas orquestras
+SELECT m.nome AS Musico, o.nome AS Orquestra
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra;
+
+-- 2 Listar músicos e suas funções
+SELECT m.nome AS Musico, f.nome_funcao AS Funcao
+FROM musicos m
+JOIN funcoes f ON m.id_funcao = f.id_funcao;
+
+-- 3️ Mostrar o nome dos músicos, orquestra e função
+SELECT m.nome, o.nome AS Orquestra, f.nome_funcao AS Funcao
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra
+JOIN funcoes f ON m.id_funcao = f.id_funcao;
+
+-- 4️ Contar quantos músicos existem por orquestra
+SELECT o.nome AS Orquestra, COUNT(m.id_musico) AS Quantidade_Musicos
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra
+GROUP BY o.nome;
+
+-- 5️ Mostrar os músicos nascidos após 1990
+SELECT nome, data_nascimento
+FROM musicos
+WHERE data_nascimento > '1990-01-01';
+
+-- 6️ Listar orquestras e os países em que estão
+SELECT nome, pais
+FROM orquestras;
+
+-- 7️ Mostrar todos os instrumentos cadastrados
+SELECT nome_instrumento, tipo, estado
+FROM instrumentos;
+
+-- 8️ Mostrar sinfonias e seus respectivos compositores
+SELECT nome_sinfonia, compositor
+FROM sinfonias;
+
+-- 9️ Contar quantos instrumentos existem por tipo
+SELECT tipo, COUNT(*) AS Quantidade
+FROM instrumentos
+GROUP BY tipo;
+
+-- 10 Mostrar o músico mais velho
+SELECT nome, data_nascimento
+FROM musicos
+ORDER BY data_nascimento ASC
+LIMIT 1;
+
+-- 11️ Mostrar os músicos mais jovens (top 5)
+SELECT nome, data_nascimento
+FROM musicos
+ORDER BY data_nascimento DESC
+LIMIT 5;
+
+-- 12️ Mostrar músicos e orquestras com telefone de contato
+SELECT m.nome AS Musico, o.nome AS Orquestra, m.telefone
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra;
+
+-- 13️ Mostrar as funções e quantos músicos exercem cada uma
+SELECT f.nome_funcao AS Funcao, COUNT(m.id_musico) AS Quantidade_Musicos
+FROM funcoes f
+LEFT JOIN musicos m ON f.id_funcao = m.id_funcao
+GROUP BY f.nome_funcao;
+
+-- 14️ Listar músicos que pertencem à mesma orquestra de "Lucas Pereira"
+SELECT nome
+FROM musicos
+WHERE id_orquestra = (
+  SELECT id_orquestra FROM musicos WHERE nome = 'Lucas Pereira'
+);
+
+-- 15️ Mostrar o total de orquestras cadastradas
+SELECT COUNT(*) AS Total_Orquestras
+FROM orquestras;
+
+-- 16️ Mostrar os compositores com sinfonias cadastradas
+SELECT DISTINCT compositor
+FROM sinfonias;
+
+-- 17️ Mostrar músicos que tocam instrumentos de corda (exemplo com subselect)
+SELECT nome
+FROM musicos
+WHERE id_musico IN (
+  SELECT id_musico
+  FROM instrumentos
+  WHERE tipo = 'Corda'
+);
+
+-- 18️ Mostrar orquestras com mais de 3 músicos
+SELECT o.nome AS Orquestra, COUNT(m.id_musico) AS Qtd_Musicos
+FROM orquestras o
+JOIN musicos m ON o.id_orquestra = m.id_orquestra
+GROUP BY o.nome
+HAVING COUNT(m.id_musico) > 3;
+
+-- 19️ Mostrar orquestras e o país que mais aparecem
+SELECT pais, COUNT(*) AS Qtd_Orquestras
+FROM orquestras
+GROUP BY pais
+ORDER BY Qtd_Orquestras DESC
+LIMIT 1;
+
+-- 20️ Mostrar o e-mail de contato de todos os músicos com suas orquestras
+SELECT m.nome AS Musico, m.email, o.nome AS Orquestra
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra;
