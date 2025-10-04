@@ -1,0 +1,58 @@
+USE escolamusica;
+
+-- View: músicos e suas orquestras
+CREATE VIEW view_musicos_orquestra AS
+SELECT m.nome AS nome_musico, o.nome AS nome_orquestra, o.cidade
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra;
+
+-- 2View: músicos e suas funções
+CREATE VIEW view_musicos_funcoes AS
+SELECT m.nome AS nome_musico, f.descricao AS funcao
+FROM musicos m
+JOIN funcoes f ON m.id_funcao = f.id_funcao;
+
+-- View: sinfonias e seus compositores
+CREATE VIEW view_sinfonias_compositores AS
+SELECT s.titulo AS sinfonia, s.compositor
+FROM sinfonias s;
+
+-- View: instrumentos e seu estado de conservação
+CREATE VIEW view_instrumentos_estado AS
+SELECT nome AS instrumento, estado_conservacao
+FROM instrumentos;
+
+-- View: orquestras por cidade
+CREATE VIEW view_orquestras_cidade AS
+SELECT nome AS orquestra, cidade
+FROM orquestras;
+
+-- View: orquestras por país
+CREATE VIEW view_orquestras_pais AS
+SELECT nome AS orquestra, pais
+FROM orquestras;
+
+-- View: músicos e sinfonias que eles tocam (exemplo com JOIN)
+CREATE VIEW view_musicos_sinfonias AS
+SELECT m.nome AS musico, s.titulo AS sinfonia
+FROM musicos m
+JOIN sinfonias s ON m.id_orquestra = s.id_orquestra;
+
+-- View: instrumentos e tipo
+CREATE VIEW view_instrumentos_tipo AS
+SELECT nome AS instrumento, tipo
+FROM instrumentos;
+
+-- View: contagem de músicos por função
+CREATE VIEW view_funcoes_contagem AS
+SELECT f.descricao AS funcao, COUNT(m.id_musico) AS total_musicos
+FROM funcoes f
+LEFT JOIN musicos m ON f.id_funcao = m.id_funcao
+GROUP BY f.descricao;
+
+-- View: orquestras e média de idade dos músicos
+CREATE VIEW view_orquestras_idade AS
+SELECT o.nome AS orquestra, AVG(m.idade) AS media_idade
+FROM orquestras o
+JOIN musicos m ON o.id_orquestra = m.id_orquestra
+GROUP BY o.nome;
