@@ -1,0 +1,98 @@
+USE escolamusica;
+
+-- 1) Listar todos os músicos
+SELECT * FROM musicos;
+
+-- 2) Listar todas as orquestras
+SELECT * FROM orquestras;
+
+-- 3) Listar todos os instrumentos disponíveis
+SELECT * FROM instrumentos WHERE estado = 'Disponível';
+
+-- 4) Listar músicos com suas orquestras
+SELECT m.nome AS Musico, o.nome AS Orquestra
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra;
+
+-- 5) Contar músicos por função
+SELECT f.nome_funcao, COUNT(*) AS quantidade
+FROM musicos m
+JOIN funcoes f ON m.id_funcao = f.id_funcao
+GROUP BY f.nome_funcao;
+
+-- 6) Listar músicos de uma orquestra específica (ex: 'Orquestra Sinfônica do Recife')
+SELECT m.nome AS Musico, o.nome AS Orquestra
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra
+WHERE o.nome = 'Orquestra Sinfônica do Recife';
+
+-- 7) Listar sinfonias de um compositor específico (ex: Beethoven)
+SELECT * FROM sinfonias WHERE compositor = 'Beethoven';
+
+-- 8) Listar músicos nascidos depois de 1990
+SELECT nome, data_nascimento FROM musicos WHERE data_nascimento > '1990-01-01';
+
+-- 9) Listar orquestras criadas antes de 1990
+SELECT nome, data_criacao FROM orquestras WHERE data_criacao < '1990-01-01';
+
+-- 10) Listar instrumentos por tipo
+SELECT tipo, nome FROM instrumentos ORDER BY tipo;
+
+-- 11) Contar músicos por orquestra
+SELECT o.nome AS Orquestra, COUNT(*) AS quantidade_musicos
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra
+GROUP BY o.nome;
+
+-- 12) Listar músicos que tocam instrumentos de cordas (subselect)
+SELECT m.nome
+FROM musicos m
+WHERE m.id_funcao IN (
+    SELECT f.id_funcao
+    FROM funcoes f
+    WHERE f.nome_funcao IN ('Violinista','Cellista','Contrabaixista','Pianista','Harpaista','Guitarrista','Viola','Violoncelo','Clavicórdio')
+);
+
+-- 13) Listar músicos com email contendo 'email.com'
+SELECT nome, email FROM musicos WHERE email LIKE '%email.com%';
+
+-- 14) Listar orquestras e a quantidade de músicos de cada função
+SELECT o.nome AS Orquestra, f.nome_funcao, COUNT(*) AS quantidade
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra
+JOIN funcoes f ON m.id_funcao = f.id_funcao
+GROUP BY o.nome, f.nome_funcao;
+
+-- 15) Listar sinfonias com duração maior que 45 minutos
+SELECT titulo, compositor, duracao_min FROM sinfonias WHERE duracao_min > 45;
+
+-- 16) Listar músicos que não possuem telefone cadastrado
+SELECT nome, telefone FROM musicos WHERE telefone IS NULL OR telefone = '';
+
+-- 17) Listar músicos por função usando JOIN
+SELECT f.nome_funcao, m.nome AS Musico
+FROM musicos m
+JOIN funcoes f ON m.id_funcao = f.id_funcao
+ORDER BY f.nome_funcao;
+
+-- 18) Listar os 5 músicos mais jovens
+SELECT nome, data_nascimento
+FROM musicos
+ORDER BY data_nascimento DESC
+LIMIT 5;
+
+-- 19) Listar orquestras com músicos de mais de 35 anos
+SELECT DISTINCT o.nome AS Orquestra
+FROM musicos m
+JOIN orquestras o ON m.id_orquestra = o.id_orquestra
+WHERE TIMESTAMPDIFF(YEAR, m.data_nascimento, CURDATE()) > 35;
+
+-- 20) Listar músicos que tocam mais de uma função (subselect de exemplo)
+SELECT nome
+FROM musicos
+WHERE id_musico IN (
+    SELECT id_musico
+    FROM musicos
+    GROUP BY id_musico
+    HAVING COUNT(id_funcao) > 1
+);
