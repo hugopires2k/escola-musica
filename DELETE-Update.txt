@@ -1,0 +1,89 @@
+-- 1. Atualizar o telefone do músico com id 1
+UPDATE musicos
+SET telefone = '81911122233'
+WHERE id_musico = 1;
+
+-- 2. Atualizar o email do músico com id 2
+UPDATE musicos
+SET email = 'fernanda.nova@email.com'
+WHERE id_musico = 2;
+
+-- 3. Atualizar o nome do músico com id 3
+UPDATE musicos
+SET nome = 'Thiago R. Rocha'
+WHERE id_musico = 3;
+
+-- 4. Atualizar a nacionalidade do músico com id 4
+UPDATE musicos
+SET nacionalidade = 'Argentina'
+WHERE id_musico = 4;
+
+-- 5. Atualizar o telefone do músico com id 5
+UPDATE musicos
+SET telefone = '81999990000'
+WHERE id_musico = 5;
+
+-- 6. Atualizar o nome da orquestra com id 6
+UPDATE orquestras
+SET nome = 'Orquestra Clássica do Recife'
+WHERE id_orquestra = 6;
+
+-- 7. Atualizar o país da orquestra com id 7
+UPDATE orquestras
+SET pais = 'Portugal'
+WHERE id_orquestra = 7;
+
+-- 8. Atualizar o estado do instrumento com id 8
+UPDATE instrumentos
+SET estado = 'Usado'
+WHERE id_instrumento = 8;
+
+-- 9. Atualizar o tipo do instrumento com id 9
+UPDATE instrumentos
+SET tipo = 'Sopro'
+WHERE id_instrumento = 9;
+
+-- 10. Atualizar o nome da função com id 10
+UPDATE funcoes
+SET nome_funcao = 'Regente Assistente'
+WHERE id_funcao = 10;
+
+-- 1. Deletar o músico com id 11
+DELETE FROM musicos
+WHERE id_musico = 11;
+
+-- 2. Deletar o músico com id 12
+DELETE FROM musicos
+WHERE id_musico = 12;
+
+-- 3. Deletar o instrumento com id 13
+DELETE FROM instrumentos
+WHERE id_instrumento = 13;
+
+-- 4. Deletar o instrumento com id 14
+DELETE FROM instrumentos
+WHERE id_instrumento = 14;
+
+-- 5. Deletar a função com id 15
+DELETE FROM funcoes
+WHERE id_funcao = 15;
+
+-- 6. Deletar a orquestra com id 16
+DELETE FROM orquestras
+WHERE id_orquestra = 16;
+
+-- 7. Deletar a orquestra com id 17
+DELETE FROM orquestras
+WHERE id_orquestra = 17;
+
+-- 8. Deletar a sinfonia com id 18
+DELETE FROM sinfonias
+WHERE id_sinfonia = 18;
+
+-- 9. Deletar a sinfonia com id 19
+DELETE FROM sinfonias
+WHERE id_sinfonia = 19;
+
+-- 10. Deletar a função com id 20
+DELETE FROM funcoes
+WHERE id_funcao = 20;
