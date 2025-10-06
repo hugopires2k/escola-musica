@@ -1,41 +1,42 @@
 USE escolamusica;
 
--- 1. Alterar tamanho da coluna 'nome' em musicos
+
 ALTER TABLE musicos 
 MODIFY nome VARCHAR(60);
 
--- 2. Adicionar coluna 'genero_musical' na tabela orquestras
+
 ALTER TABLE orquestras 
 ADD genero_musical VARCHAR(50);
 
--- 3. Alterar tipo da coluna 'telefone' em musicos para permitir null
+
 ALTER TABLE musicos 
 MODIFY telefone VARCHAR(30) NULL;
 
--- 4. Adicionar coluna 'pais_origem' na tabela musicos
+
 ALTER TABLE musicos 
 ADD pais_origem VARCHAR(50);
 
--- 5. Alterar tipo da coluna 'duracao_min' em sinfonias para DECIMAL
+
 ALTER TABLE sinfonias 
 MODIFY duracao_min DECIMAL(5,2);
 
--- 6. Adicionar coluna 'marca' na tabela instrumentos
+
 ALTER TABLE instrumentos 
 ADD marca VARCHAR(50);
 
--- 7. Renomear coluna 'nome_funcao' para 'funcao' na tabela funcoes
+
 ALTER TABLE funcoes 
 CHANGE nome_funcao funcao VARCHAR(50) NOT NULL;
 
--- 8. Adicionar coluna 'data_falecimento' em musicos
+
 ALTER TABLE musicos 
 ADD data_falecimento DATE;
 
--- 9. Adicionar coluna 'ativo' em musicos para indicar se está ativo na orquestra
+
 ALTER TABLE musicos 
 ADD ativo BOOLEAN DEFAULT TRUE;
 
 -- 10. Alterar coluna 'cidade' em orquestras para VARCHAR(100)
 ALTER TABLE orquestras 
 MODIFY cidade VARCHAR(100);
+
