@@ -43,47 +43,32 @@ UPDATE instrumentos
 SET tipo = 'Sopro'
 WHERE id_instrumento = 9;
 
--- Atualizar o nome da função com id 10
+-- Atualizar o nome da função com id 10 (atenção ao novo nome da coluna: 'funcao')
 UPDATE funcoes
-SET nome_funcao = 'Regente Assistente'
+SET funcao = 'Regente Assistente'
 WHERE id_funcao = 10;
 
--- Deletar o músico com id 11
+
+-- Deletar músicos vinculados às orquestras 16 e 17
 DELETE FROM musicos
-WHERE id_musico = 11;
+WHERE id_orquestra IN (16, 17);
 
--- Deletar o músico com id 12
+-- Deletar músicos específicos
 DELETE FROM musicos
-WHERE id_musico = 12;
+WHERE id_musico IN (11, 12);
 
--- Deletar o instrumento com id 13
+-- Deletar instrumentos específicos
 DELETE FROM instrumentos
-WHERE id_instrumento = 13;
+WHERE id_instrumento IN (13, 14);
 
--- Deletar o instrumento com id 14
-DELETE FROM instrumentos
-WHERE id_instrumento = 14;
-
--- Deletar a função com id 15
+-- Deletar funções específicas
 DELETE FROM funcoes
-WHERE id_funcao = 15;
+WHERE id_funcao IN (15, 20);
 
--- Deletar a orquestra com id 16
+-- Agora deletar as orquestras 16 e 17, sem erro de FK
 DELETE FROM orquestras
-WHERE id_orquestra = 16;
+WHERE id_orquestra IN (16, 17);
 
--- Deletar a orquestra com id 17
-DELETE FROM orquestras
-WHERE id_orquestra = 17;
-
--- Deletar a sinfonia com id 18
+-- Deletar sinfonias específicas
 DELETE FROM sinfonias
-WHERE id_sinfonia = 18;
-
--- Deletar a sinfonia com id 19
-DELETE FROM sinfonias
-WHERE id_sinfonia = 19;
-
--- 10. Deletar a função com id 20
-DELETE FROM funcoes
-WHERE id_funcao = 20;
+WHERE id_sinfonia IN (18, 19);
